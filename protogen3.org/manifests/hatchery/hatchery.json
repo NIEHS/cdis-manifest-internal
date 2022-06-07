@@ -2,18 +2,24 @@
   "user-namespace": "jupyter-pods",
   "sub-dir": "/lw-workspace",
   "user-volume-size": "10Gi",
+  "default-pay-model": {
+    "aws_account_id": "252835817747",
+    "name": "workspaces",
+    "region": "us-east-1"
+  },
   "sidecar": {
     "cpu-limit": "1.0",
     "memory-limit": "256Mi",
-    "image": "quay.io/cdis/gen3fuse-sidecar:2022.05",
+    "image": "quay.io/cdis/ecs-ws-sidecar:2022.05",
     "env": {
       "NAMESPACE": "default",
+      "GEN3_ENDPOINT": "protogen3.org",
       "HOSTNAME": "protogen3.org"
     },
     "args": [],
     "command": [
       "/bin/bash",
-      "/sidecarDockerrun.sh"
+      "./sidecar.sh"
     ],
     "lifecycle-pre-stop": [
       "su",
@@ -24,12 +30,41 @@
       "root"
     ]
   },
-  "containers": [],
-  "more-configs": [
+  "containers": [
     {
-      "type": "dockstore-compose:1.0.0",
-      "path": "/hatchery-more-configs/jupyterslim.yaml",
-      "name": "Jupyter Notebook"
+      "target-port": 8888,
+      "cpu-limit": "1.0",
+      "memory-limit": "2Gi",
+      "name": "(Generic) Jupyter Lab Notebook with R Kernel",
+      "image": "quay.io/cdis/jupyter-superslim-r:1.0.1",
+      "env": {
+        "FRAME_ANCESTORS": "https://protogen3.org"
+      },
+      "args": [
+        "--NotebookApp.base_url=/lw-workspace/proxy/",
+        "--NotebookApp.default_url=/lab",
+        "--NotebookApp.password=''",
+        "--NotebookApp.token=''",
+        "--NotebookApp.ip='*'",
+        "--NotebookApp.notebook_dir='/home/jovyan'",
+        "--NotebookApp.shutdown_no_activity_timeout=5400",
+        "--NotebookApp.quit_button=False"
+      ],
+      "command": [
+        "start-notebook.sh"
+      ],
+      "path-rewrite": "/lw-workspace/proxy/",
+      "use-tls": "false",
+      "ready-probe": "/lw-workspace/proxy/",
+      "lifecycle-post-start": [
+        "/bin/sh",
+        "-c",
+        "export IAM=`whoami`; rm -rf /home/$IAM/pd/dockerHome; rm -rf /home/$IAM/pd/lost+found; ln -s /data /home/$IAM/pd/; true"
+      ],
+      "user-uid": 1000,
+      "fs-gid": 100,
+      "user-volume-location": "/home/jovyan/pd",
+      "gen3-volume-location": "/home/jovyan/.gen3"
     }
   ]
 }
