@@ -2,11 +2,6 @@
   "user-namespace": "jupyter-pods",
   "sub-dir": "/lw-workspace",
   "user-volume-size": "10Gi",
-  "default-pay-model": {
-    "aws_account_id": "252835817747",
-    "name": "workspaces",
-    "region": "us-east-1"
-  },
   "sidecar": {
     "cpu-limit": "1.0",
     "memory-limit": "256Mi",
