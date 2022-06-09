@@ -17,8 +17,8 @@
         "sheepdog": "quay.io/cdis/sheepdog:2022.05",
         "portal": "quay.io/cdis/data-portal:2022.05",
         "fluentd": "fluent/fluentd-kubernetes-daemonset:v1.2-debian-cloudwatch",
-        "guppy": "quay.io/cdis/guppy:2022.05",
-        "spark": "quay.io/cdis/gen3-spark:2022.05",
+        "hatchery": "quay.io/cdis/hatchery:2022.05",
+	"spark": "quay.io/cdis/gen3-spark:2022.05",
         "wts": "quay.io/cdis/workspace-token-service:2022.05",
         "manifestservice": "quay.io/cdis/manifestservice:2022.05",
         "tube": "quay.io/cdis/tube:0.6.9",
@@ -49,15 +49,5 @@
     },
     "canary": {
         "default": 0
-    },
-    "guppy": {
-    	"indices": [
-		{
-			"index": "cebs_dataset",
-			"type": "dataset"
-		}
-	],
-	"config_index": "cebs_dataset-array-config",
-	"auth_filter_field": "auth_resource_path"
     }
 }
