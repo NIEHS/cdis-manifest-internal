@@ -17,11 +17,11 @@
     "projectDetails": "boardCounts"
   },
   "components": {
-    "appName": "CEBS Expression Data Commons",
+    "appName": "DNTP Data Commons",
     "index": {
       "introduction": {
-        "heading": "CEBS Expression Data Commons",
-        "text": "The CEBS Expression Data Commons supports the management, analysis and sharing of CEBS Expression Data",
+        "heading": "DNTP Data Commons",
+        "text": "The DNTP Data Commons  supports the management, analysis and sharing of Expression Data",
         "link": "/submission"
       },
       "buttons": [
