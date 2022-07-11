@@ -5,16 +5,15 @@
   "sidecar": {
     "cpu-limit": "0.5",
     "memory-limit": "256Mi",
-    "image": "quay.io/cdis/ecs-ws-sidecar:2022.07",
+    "image": "quay.io/cdis/gen3fuse-sidecar:2022.05",
     "env": {
       "NAMESPACE": "default",
-      "GEN3_ENDPOINT": "protogen3.org",
       "HOSTNAME": "protogen3.org"
     },
     "args": [],
     "command": [
       "/bin/bash",
-      "./sidecar.sh"
+      "/sidecarDockerrun.sh"
     ],
     "lifecycle-pre-stop": [
       "su",
@@ -54,12 +53,11 @@
       "lifecycle-post-start": [
         "/bin/sh",
         "-c",
-        "export IAM=`whoami`; rm -rf /home/$IAM/pd/dockerHome; rm -rf /home/$IAM/pd/lost+found; ln -s /data /home/$IAM/pd/; true"
+        "export IAM=`whoami`; rm -rf /home/$IAM/pd/dockerHome; ln -s $(pwd) /home/$IAM/pd/dockerHome; mkdir -p /home/$IAM/.jupyter/custom; echo \"define(['base/js/namespace'], function(Jupyter){Jupyter._target = '_self';})\" >/home/$IAM/.jupyter/custom/custom.js; ln -s /data /home/$IAM/pd/; true"
       ],
       "user-uid": 1000,
       "fs-gid": 100,
-      "user-volume-location": "/home/jovyan/pd",
-      "gen3-volume-location": "/home/jovyan/.gen3"
+      "user-volume-location": "/home/jovyan/pd"
     }
   ]
 }
