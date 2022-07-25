@@ -19,7 +19,7 @@
         "sower": "quay.io/cdis/sower:2022.05",
         "portal": "quay.io/cdis/data-portal:2022.05",
         "fluentd": "fluent/fluentd-kubernetes-daemonset:v1.2-debian-cloudwatch",
-	    "hatchery": "quay.io/cdis/hatchery:2022.05",
+        "hatchery": "quay.io/cdis/hatchery:2022.05",
         "guppy": "quay.io/cdis/guppy:2022.05",
         "spark": "quay.io/cdis/gen3-spark:2022.05",
         "wts": "quay.io/cdis/workspace-token-service:2022.05",
@@ -60,11 +60,7 @@
                     },
                     {
                         "name": "ROOT_NODE",
-                        "value": "subject"
-                    },
-                    {
-                        "name": "EXTRA_NODES",
-                        "value": "reference_file"
+                        "value": "dataset"
                     }
                 ],
                 "volumeMounts": [
@@ -78,6 +74,12 @@
                         "name": "peregrine-creds-volume",
                         "readOnly": true,
                         "mountPath": "/peregrine-creds.json",
+                        "subPath": "creds.json"
+                    },
+                    {
+                        "name": "indexd-creds-volume",
+                        "readOnly": true,
+                        "mountPath": "/indexd-creds.json",
                         "subPath": "creds.json"
                     }
                 ],
@@ -95,6 +97,12 @@
                     "name": "peregrine-creds-volume",
                     "secret": {
                         "secretName": "peregrine-creds"
+                    }
+                },
+                {
+                    "name": "indexd-creds-volume",
+                    "secret": {
+                        "secretName": "indexd-creds"
                     }
                 }
             ],
