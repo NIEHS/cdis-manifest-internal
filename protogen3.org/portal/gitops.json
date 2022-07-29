@@ -218,6 +218,13 @@
           "title": "Export to Workspace",
           "leftIcon": "datafile",
           "rightIcon": "download"
+        },
+        {
+          "enabled": true,
+          "type": "export-pfb-to-workspace",
+          "title": "Export PFB to Workspace",
+          "leftIcon": "datafile",
+          "rightIcon": "download"
         }
       ],
       "loginForDownload": true,
@@ -240,6 +247,6 @@
     }
   ],
   "connectSrcCSPWhitelist": [
-    "https://protogen3.org"
+    "https://protgen3.org"
   ]
 }
