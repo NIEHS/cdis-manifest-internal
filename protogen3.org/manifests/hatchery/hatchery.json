@@ -1,20 +1,19 @@
 {
   "user-namespace": "jupyter-pods",
   "sub-dir": "/lw-workspace",
-  "user-volume-size": "10Gi",
+  "user-volume-size": "5Gi",
   "sidecar": {
-    "cpu-limit": "1.0",
+    "cpu-limit": "0.5",
     "memory-limit": "256Mi",
-    "image": "quay.io/cdis/ecs-ws-sidecar:2022.05",
+    "image": "quay.io/cdis/gen3fuse-sidecar:2022.08",
     "env": {
       "NAMESPACE": "default",
-      "GEN3_ENDPOINT": "protogen3.org",
       "HOSTNAME": "protogen3.org"
     },
     "args": [],
     "command": [
       "/bin/bash",
-      "./sidecar.sh"
+      "/sidecarDockerrun.sh"
     ],
     "lifecycle-pre-stop": [
       "su",
@@ -28,8 +27,8 @@
   "containers": [
     {
       "target-port": 8888,
-      "cpu-limit": "1.0",
-      "memory-limit": "2Gi",
+      "cpu-limit": "0.5",
+      "memory-limit": "1Gi",
       "name": "(Generic) Jupyter Lab Notebook with R Kernel",
       "image": "quay.io/cdis/jupyter-superslim-r:1.0.1",
       "env": {
@@ -58,8 +57,7 @@
       ],
       "user-uid": 1000,
       "fs-gid": 100,
-      "user-volume-location": "/home/jovyan/pd",
-      "gen3-volume-location": "/home/jovyan/.gen3"
+      "user-volume-location": "/home/jovyan/pd"
     }
   ]
 }
