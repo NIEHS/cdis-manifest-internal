@@ -322,7 +322,7 @@
           "fileName": "datasets_table.csv"
         },
         {
-          "enabled": true,
+          "enabled": false,
           "type": "manifest",
           "title": "Download File Manifest for Datasets",
           "leftIcon": "datafile",
@@ -337,7 +337,7 @@
           "rightIcon": "download"
         },
         {
-          "enabled": true,
+          "enabled": false,
           "type": "export-pfb-to-workspace",
           "title": "Export PFB to Workspace",
           "leftIcon": "datafile",
@@ -355,26 +355,6 @@
       }
     }
 
-
-  ],
-      "loginForDownload": true,
-      "guppyConfig": {
-        "dataType": "dataset",
-        "nodeCountTitle": "Expression Datasets",
-        "fieldMapping": [
-          {
-            "field": "project_id",
-            "name": "Dataset ID"
-          },
-          {
-            "field": "submitter_id",
-            "name": "Dataset Name"
-          }
-        ],
-        "accessibleFieldCheckList": ["project_id"],
-        "accessibleValidationField": "project_id"
-      }
-    }
   ],
   "connectSrcCSPWhitelist": [
     "https://protgen3.org"
