@@ -131,7 +131,7 @@
 
 
     {
-      "tabTitle": "NTP Expression Datasets",
+      "tabTitle": "Expression Datasets",
       "charts": {
         "project_investigator_affiliation": {
           "chartType": "bar",
