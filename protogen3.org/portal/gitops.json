@@ -363,6 +363,6 @@
 	}
   ],
   "connectSrcCSPWhitelist": [
-	"https://protgen3.org"
+	"https://protogen3.org"
   ]
 }
