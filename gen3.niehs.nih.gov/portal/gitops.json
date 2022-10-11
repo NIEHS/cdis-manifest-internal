@@ -53,8 +53,7 @@
           "link": "/workspace",
           "label": "Run Analysis"
         }
-      ],
-      "homepageChartNodes": []
+      ]
     },
     "navigation": {
       "items": [
@@ -131,7 +130,7 @@
 
 
     {
-      "tabTitle": "Expression Datasets",
+      "tabTitle": "NTP Expression Datasets",
       "charts": {
         "project_investigator_affiliation": {
           "chartType": "bar",
